@@ -11,11 +11,6 @@ time.sleep(3)
 #------------------------------------------------------------------------
 browser.find_element(By.XPATH , '//*[@id="onetrust-accept-btn-handler"]').click()
 time.sleep(1)
-#browser.execute_script('window.scrollTo(0,550)')
-#time.sleep(2)
-#click on day dte                   
-#browser.find_element(By.XPATH , '/html/body/form/div[3]/div[2]/div[3]/div[1]/div/div/div[1]/div/div[3]/div[4]/table/tbody[2]/tr[3]/td[5]/a').click()
-#time.sleep(1)
 #click on volume/oi
 browser.find_element(By.XPATH , '//*[@id="main-content"]/div/div[3]/div[2]/div/div/div/div[1]/div/div[1]/div/div[2]/div[2]/div[7]/div/a').click()
 time.sleep(0.5)
