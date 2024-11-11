@@ -24,3 +24,4 @@ put['Globex'] = pd.to_numeric(put['Globex'], errors='coerce')
 put = put.dropna(subset=['Globex'])
 result2 = put[put['Globex'] >= 1]
 print(result2)
+#The number of indexes to separate data is different for each Excel. So be sure to check it yourself
