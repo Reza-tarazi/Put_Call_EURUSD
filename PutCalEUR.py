@@ -1,27 +1,25 @@
-#In the previous code, it was related to web scraping from the site, but because it was an easier way, we preferred to change it
 import pandas as pd
-#====================
-#https://www.cmegroup.com/tools-information/quikstrike/options-calendar-fx.html
-#You can choose your desired day from the desired site and then download the desired file in the Volemw/OI section. Then examine the Excel file
-c = pd.read_excel("EURUSD-Mon.xls")
-#-------------------------------------
-#Now we have to separate the call and put data for each part and adjust the rows and columns like Excel and according to our desired data.
-fc= fc.iloc[19:,:10]
-fc.columns = fc.iloc[1]
-fc.index=fc.Strike
-fc.drop("Strike",axis=1,inplace=True)
-call=fc.iloc[:45]
-put = fc.iloc[46:98]
-#-------------------------------------
-#In this step, we have to separate that part of the data where the orders have changed for each part
-call2 = call.iloc[2:]
-call2['Globex'] = pd.to_numeric(call2['Globex'], errors='coerce')
-call2 = call2.dropna(subset=['Globex'])
-result = call2[call2['Globex'] >= 1]
-print(result)
-#-------------------------------------
+
+# Load the Excel file
+df = pd.read_excel("EURUSD-Mon.xls")
+
+# Separate the call and put data, adjusting the rows and columns as needed
+df = df.iloc[19:, :10]
+df.columns = df.iloc[1]
+df.index = df.Strike
+df.drop("Strike", axis=1, inplace=True)
+call = df.iloc[:45]
+put = df.iloc[46:98]
+
+# Filter the call data where the orders have changed
+call_filtered = call.iloc[2:]
+call_filtered['Globex'] = pd.to_numeric(call_filtered['Globex'], errors='coerce')
+call_filtered = call_filtered.dropna(subset=['Globex'])
+call_result = call_filtered[call_filtered['Globex'] >= 1]
+print(call_result)
+
+# Filter the put data where the orders have changed
 put['Globex'] = pd.to_numeric(put['Globex'], errors='coerce')
 put = put.dropna(subset=['Globex'])
-result2 = put[put['Globex'] >= 1]
-print(result2)
-#The number of indexes to separate data is different for each Excel. So be sure to check it yourself
+put_result = put[put['Globex'] >= 1]
+print(put_result)
